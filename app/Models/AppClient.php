@@ -12,4 +12,7 @@ class AppClient extends Model
     public function auth_code(){
      $this->hasMany(AuthCode::class);
     }
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 }

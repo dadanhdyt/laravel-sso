@@ -14,4 +14,7 @@ class AksesToken extends Model
         'akses_token',
         'expired'
     ];
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 }

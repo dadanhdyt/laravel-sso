@@ -21,6 +21,7 @@ class AuthController extends Controller
             if( $backUri ) {
                 return redirect()->to($backUri);
             }
+            return redirect()->route('home');
         } else {
             return redirect()->back()->withErrors([
                 'email' => "Tidak terdaftar atau password salah"

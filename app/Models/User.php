@@ -45,4 +45,7 @@ class User extends Authenticatable
     public function auth_code(){
         return $this->hasMany(AuthCode::class);
     }
+    public function app(){
+        return $this->belongsToMany(AppClient::class,'akses_tokens');
+    }
 }

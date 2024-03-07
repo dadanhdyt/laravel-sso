@@ -15,13 +15,13 @@ class AuthorizeController extends Controller
     {
         $parameters = $request->only(['client_id', 'state', 'redirect_uri']);
         if (empty($parameters['client_id'])) {
-            return "Bad Request";
+            return "Akses diblokir: Permintaan aplikasi ini tidak valid";
         } else if (empty($parameters['redirect_uri'])) {
-            return "Bad Request";
+            return "Akses diblokir: Permintaan aplikasi ini tidak valid";
         }
         $appClient = AppClient::whereClientId($parameters['client_id'])->first();
         if (!$appClient) {
-            return "App Client tidak terdaftar di sistem kami";
+            return "Akses diblokir: Permintaan aplikasi ini tidak valid";
         } else if ($appClient->callback_url !== $parameters['redirect_uri']) {
             return "Akses diblokir: Permintaan aplikasi ini tidak valid";
         }
