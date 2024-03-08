@@ -48,4 +48,7 @@ class User extends Authenticatable
     public function app(){
         return $this->belongsToMany(AppClient::class,'akses_tokens');
     }
+    public function aksesToken(){
+        return $this->hasMany(User::class);
+    }
 }

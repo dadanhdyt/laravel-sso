@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\UserInfoController;
+use App\Http\Middleware\ApiOauthMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(ApiOauthMiddleware::class)->group(function(){
+    Route::get('/userinfo',[UserInfoController::class,'index']);
 });

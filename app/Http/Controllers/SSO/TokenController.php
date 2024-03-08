@@ -28,7 +28,7 @@ class TokenController extends Controller
                 'client_id',
                 'secret_key',
             ]);
-            $grantTypeHandlerService->checkGrantType($param['grant_type']);
+            $grantTypeHandlerService->checkGrantType($param['grant_type'] ?? null);
             $appClientSevice->validate($request);
             return $grantTypeHandlerService->handle($request);
 

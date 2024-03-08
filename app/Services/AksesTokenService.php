@@ -1,7 +1,11 @@
 <?php
 namespace App\Services;
 
+use App\Exceptions\AksesTokenExpiredException;
+use App\Exceptions\UnauthorizeException as ExceptionsUnauthorizeException;
 use App\Models\AksesToken;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use UnauthorizeException;
 
 class AksesTokenService{
     /**
@@ -20,5 +24,18 @@ class AksesTokenService{
             'expired' => time()+60*60,
         ]);
 
+    }
+    public function validateToken(?string $akses_token){
+        $token = AksesToken::whereAksesToken($akses_token)->first();
+        if(empty($akses_token)){
+            throw new \InvalidArgumentException("Request tidak ada aksestoken nya");
+        }
+        if ( !$token ){
+            throw new ExceptionsUnauthorizeException("Unauthorized");
+        }
+        if($token->expired < time()) {
+            throw new AksesTokenExpiredException("Akses token expired");
+        }
+        return $token;
     }
 }

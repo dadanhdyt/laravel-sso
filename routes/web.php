@@ -28,4 +28,5 @@ Route::middleware('guest')->group(function () {
 });
 Route::middleware('auth')->group(function(){
     Route::get('/',[HomeController::class,'index'])->name('home');
+    Route::get('/update-password', [HomeController::class,'updatePassword'])->name('update-password');
 });

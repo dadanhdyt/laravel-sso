@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="mt-5 flex items-center gap-3">
-                                <button class="p-2 flex flex-row items-center bg-red-500 rounded-lg text-sm text-white">
+                                <button onclick="location.href='{{ route('update-password') }}'" class="p-2 flex flex-row items-center bg-red-500 rounded-lg text-sm text-white">
                                     <i class="pi pi-key"></i>
                                     Update Password</button>
                                 <button class="p-2 flex flex-row items-center bg-blue-500 rounded-lg text-sm text-white">
@@ -59,7 +59,6 @@
                             <div class="flex flex-col">
                                 {{ $item->nama }}
                                 <a class="text-xs" href="">{{ $item->homepage_url }}</a>
-
                             </div>
                         </div>
                         @endforeach

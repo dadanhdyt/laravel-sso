@@ -13,4 +13,7 @@ class HomeController extends Controller
         $apps = AppClient::whereIn('client_id',$client_ids)->orderBy('client_id')->get();
         return view('home',compact('apps'));
     }
+    public function updatePassword(Request $request){
+        return view('update-password');
+    }
 }
