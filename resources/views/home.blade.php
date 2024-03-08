@@ -5,7 +5,11 @@
         <div class="flex flex-col sm:flex-row justify-between gap-7">
             <div class="max-w-4xl w-full">
                 <div class="bg-white p-4 px-5 rounded">
+
                     <div class="border-b mb-3 pb-4 text-red-500 font-semibold">Overview</div>
+                    @error('suksess')
+                        <p class="bg-green-100/50 border border-green-500 my-3 mt-5 text-sm rounded px-4 p-2">{{ $message }}</p>
+                    @enderror
                     <div class="flex flex-col sm:flex-row gap-5 justify-between py-2">
                         <div class="max-w-[200px] max-h-[200px] overflow-hidden rounded-lg w-full">
                             <img class="w-full rounded-lg" src="{{ auth()->user()->avatar }}" alt="">
