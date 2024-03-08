@@ -1,0 +1,21 @@
+{
+    "name": "argan/oauthclient",
+    "description": "SSo client untuk php",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Argan\\Oauthclient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dadanhdyt",
+            "email": "dadanhidyt@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "vajiral/php-dumpdie": "^0.0.3"
+    }
+}
