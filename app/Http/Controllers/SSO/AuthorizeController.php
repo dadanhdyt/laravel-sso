@@ -14,27 +14,37 @@ class AuthorizeController extends Controller
     public function index(Request $request)
     {
         $parameters = $request->only(['client_id', 'state', 'redirect_uri']);
-        $redirect_uri = urldecode($parameters['redirect_uri']);
+        /**
+         * cek redirect uri
+         */
+        $error = '';
         if (empty($parameters['client_id'])) {
-            return "Akses diblokir: Permintaan aplikasi ini tidak valid 'client_id' empty";
+            $error = "Akses diblokir: Permintaan aplikasi ini tidak valid 'client_id' empty";
         } else if (empty($parameters['redirect_uri'])) {
-            return "Akses diblokir: Permintaan aplikasi ini tidak valid 'redirect_uri' empty";
+            $error = "Akses diblokir: Permintaan aplikasi ini tidak valid 'redirect_uri' empty";
         }
+        if(!empty($error)){
+            return view('sso.error',compact('error'));
+        }
+        $redirect_uri = urldecode($parameters['redirect_uri']);
         $appClient = AppClient::whereClientId($parameters['client_id'])->first();
         if (!$appClient) {
-            return "Akses diblokir: Permintaan aplikasi ini tidak valid 'client' tidak terdaftar";
+            return view('sso.error',['error'=>'Aplikasi tidak aktif']);
         } else if ($appClient->callback_url !== $redirect_uri) {
-            return "Akses diblokir: Permintaan aplikasi ini tidak valid";
+            return view('sso.error',['error'=>'Akses Di blokir: Permintaan tidak valid']);
         }
 
         $back_uri = [
             'back_to' => urlencode(url($_SERVER['REQUEST_URI'])),
         ];
 
+
+
         //cek apakah user telah login di server sso?
         if (!auth()->check()) {
             return redirect()->route('users.login', $back_uri);
         }
+
         /**
          * get user yang telah login
          */

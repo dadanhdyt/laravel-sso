@@ -4,11 +4,11 @@
         <h1 class="my-5 font-bold text-lg uppercase text-red-500">Profile</h1>
         <div class="flex flex-col sm:flex-row justify-between gap-7">
             <div class="max-w-4xl w-full">
-                <div class="bg-white p-4 rounded">
+                <div class="bg-white p-4 px-5 rounded">
                     <div class="border-b mb-3 pb-4 text-red-500 font-semibold">Overview</div>
                     <div class="flex flex-col sm:flex-row gap-5 justify-between py-2">
                         <div class="max-w-[200px] max-h-[200px] overflow-hidden rounded-lg w-full">
-                            <img class="w-full" src="{{ auth()->user()->avatar }}" alt="">
+                            <img class="w-full rounded-lg" src="{{ auth()->user()->avatar }}" alt="">
                         </div>
                         <div class="max-w-full w-full">
                             <div class="grid grid-cols-1 gap-4">
@@ -44,12 +44,12 @@
                 </div>
             </div>
             <div class="sm:max-w-sm mb-4 sm:mb-0 w-full">
-                <div class="bg-white px-3 py-2 rounded-lg">
+                <div class="bg-white px-5 py-2 rounded-lg">
                     <div class="mb-2 text-red-500 font-semibold uppercase">Aplikasi Terhubung</div>
                    @if (count($apps) === 0)
                     <div>Tidak ada aplikasi terhubung</div>
                        @else
-                       <div class="grid grid-cols-1 my-4">
+                       <div class="grid gap-3 grid-cols-1 my-4">
 
                         @foreach ($apps as $item)
                         <div class="p-3 items-center flex gap-3 bg-green-100/50 border-green-300 rounded border">
